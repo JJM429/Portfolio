@@ -1,0 +1,10 @@
+player:pieter
+map:r1
+    room:r1,test room,This is a test room for testing. It's bland.,false
+        equipment:k0,key,An old rusty key,false,open,c1,rb1,You use the rusty key to open the chest. Something falls to the floor...
+        container:c1,chest,A solid oak chest.,false
+        equipment:rb1,ruby,A red ruby,true,reveal,r1,e1,You active the ruby! Hidden objects become visible!
+        item:d1,diamond,A test diamond,false
+        exit:e1,north,A door to the north,r2,true
+     room:r2,second room, This is the second testing room. It's even more bland.,false
+        exit:e2,south,A door to the south,r1,false
