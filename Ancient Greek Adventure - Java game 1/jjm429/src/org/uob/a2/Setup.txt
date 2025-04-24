@@ -1,0 +1,68 @@
+map:m1
+room:1,Slay the Nemean Lion,The first task lies to the east - where the Hills of Nemea are plagued by a monstrous lion. Its roars echo like thunder - terrorizing the nearby villages. By King Eurystheus' Decree: You must defeat the lion and return with its hide as proof of your triumph.,false
+equipment:club,club,A blunt olive-wood club.,false,hit,lion,hide,Brandishing your club you step forth into a perilous stalemate. Ahead the fierce beast snarls and coils up - ready to pounce. With an almighty roar that seemed to shake the very heavens the lion springs forth and is met by a determined and fearless charge of your own. Summoning up strength worthy of a demigod you crack the lion at the apex of its jump with a devastating blow that echoes through the hillside. The lion slows down a little - apparently stunned by such a powerful strike - and you seize the initiative rushing the beast and swiftly throttling it. It tries in vain to throw you off but it is of no use. Your vice-like grip squeezes like a cobra and doesn't let up until the lions death throes and convulsions come to an end.
+item:hide,hide,The legendary fur of the Nemean Lion was said to be impenetrable by mortal weapons. It granted the beast it adorned invulnerability to harm.,true
+foe:lion,lion,The Nemean Lion,false,Brandishing your club you step forth into a perilous stalemate. Ahead the fierce beast snarls and coils up ready to pounce. With an almighty roar - that seemed to shake the very heavens - the lion springs forth and is met by a determined and fearless charge of your own. Summoning up strength worthy of a demigod - you crack the lion at the apex of its jump with a devastating blow that echoes through the hillside. The lion slows down a little - apparently stunned by such a powerful strike - and you seize the initiative rushing the beast and swiftly throttling it. It tries in vain to throw you off but it is of no use. Your vice-like grip squeezes like a cobra and doesn't let up until the lions death throes and convulsions come to an end.,false,club,You stand frozen in terror as the lion stalks towards you.,hide
+exit:e2,south-east,Path the the Marshes of Lerna,2,true
+room:2,Slay the Lernean Hydra,The second task lies to the south where the Lands of Lerna are threatened by a sinister serpent. Its fangs dripped with a venom so potent that it was said the brutes' breath alone could wilt plants. By King Eurystheus' Decree: You must dispatch the 7-headed hydra,false
+equipment:torch,torch,A blazing wooden torch,false,combine,sword,fire-sword,With a prayer to the cardinal craftsman you forge a new molten weapon.
+equipment:sword,sword,The golden sword of Athena,false,combine,torch,fire-sword,With a prayer to the cardinal craftsman you forge a new molten weapon.
+item:fire-sword,fire-sword,A blazing sword that burns with the fury of Hephaestus,true
+item:envenomed-arrows,envenomed-arrows,Arrows tipped with the infamous venom of the Hydra,true
+equipment:poison,poison,The infamous venom of the Hydra,true,dip,arrows,envenomed-arrows,You dip the arrows in the Hydra's poison. You have a feeling this will be useful later.
+foe:hydra,hydra,The Lernean Hydra,false,The molten weapon slices effortlessly through the Hydra's neck - cauterising the stump as it cuts to prevent the heads from regenerating. You continue this horrific dance working with unmatched accuracy and efficiency. Cut and cauterise - cut and cauterise... After a drawn out and exhausting battle the lifeless and headless form of the hydra slumps and tumbles into the swamp with a mighty splash. You rejoice at being one step closer to the end of your trials.,false,fire-sword,You strike the Hydra with an almighty blow but it achieves little as you are swarmed by the other heads. You are forced to retreat in order to avoid a hostile spray of venom.,poison
+exit:e3,north-west,Path to the mountains of Ceryneia,3,true
+room:3,Capture the golden hind,The third task lies to the west where - rumour has it - there resides a creature so fast it could outpace an arrow. By King Eurystheus' Decree: you must restrain the Golden Hind and return it to him alive.,false
+equipment:net,net,A trapping net designed for hunting,false,captured-hind,hind,captured,The hind thrashes and bucks but cannot escape the net.
+item:captured-hind,captured-hind,The bound and captured Golden Hind,true
+foe:hind,hind,The Golden Hind,false,You set your trap and lie in wait... Days pass as you patiently bide your time. Then it happens! You catch a glimpse of the sunlight reflecting off of the hind. Summoning the speed of hermes you give chase. You chase and chase for what feels like an eternity before the creature collapses from pure exhaustion. The hind bucks and thrashes but cannot escape the net.,false,net,You attack but the hind is far too elusive. It shoots off into the distance with incomprehensible speed and you grunt in frustration at the missed opportunity.,captured-hind
+exit:e4,south,Path to Erymanthos,4,true
+room:4,Capture the Erymanthian Boar,The fourth task takes place on Mount Erymanthos where the fearsome boar resides. By King Eurystheus' Decree: You must bring the Erymanthian Boar back alive.,false
+equipment:chains,chains,A set of sturdy chains that could be useful in helping to restrain a large beast,false,restrain,boar,captured-boar,The boar snorts with exertion as it attempts a futile escape.
+item:captured-boar,captured-boar,The bound and captured Erymanthian Boar,true
+foe:boar,boar,The Erymanthian Boar,false,In a violent battle you drive the aggressive boar into deep snow. With one hand on the boar's mighty tusks you wrap the chains around its legs. The subdued bull snorts with exertion as it attempts a futile escape.,false,chains,You grab the boar by the tusks in an immense effort to subdue it. Alas you are unable to restrain it and you are thrown off.,captured-boar
+exit:e5,west,Path to the Augean Stables,5,true
+room:5,Clean the Augean Stables,Enraged by your success King Eurystheus devised a task thought to be both impossible and humiliating. The Augean stables have not been cleaned in over 30 years and the inhabitant livestock produce an enormous amount of dung. Nearby a fast-flowing river looks fit to burst its river-bank. By King Eurystheus' Decree: You must clean the stables entirely in one day.,false
+equipment:shovel,shovel,A tiny shovel designed to make a mockery of your task,false,dig,river-bank,redirected-river,The river roars through the stable washing away decades of filth.
+equipment:dung,dung,Muck and filth from decades of neglect,true,dig,shovel,dung,You shovel yet more dung out of the stable but it makes no difference to the condition. At this rate you will be here for the rest of the millenium.
+foe:river-bank,river-bank,The Augean Stables,false,You dig away the river bank and redirect the flow of water through the stables. The river roars through the stable washing away decades of filth.,false,shovel,You are left to despair as the bank stands firm.,drachma
+item:drachma,drachma,A golden drachma taken as payment for cleaning the stables,true
+exit:e6,east,Path to Lake Stymphalia,6,true
+room:6,Slay the Stymphalian Birds,The sixth labour involves a journey to the north-east of the Peloponnese - where the people are tyrannised by man-eating birds with beaks made of the sharpest bronze. By King Eurystheus' Decree: You must slay the Stymphalian Birds.,false
+foe:birds,birds,Stymphalian Birds,false,With the help of Athena the birds are startled into flight. You pick them off with a flurry of arrows - each finding its mark with precision as you fell the once-terrifying flock.,false,bow,The birds sit unaffected in their roost. Their piercing shrieks turn your blood to ice.,razor-feather
+item:razor-feather,razor-feather,The feather of a Stymphalian Bird,true
+exit:e7,south,Journey to the island of Crete,7,true
+room:7,Capture the Cretan Bull,Your next task requires you to venture beyond the Peloponnese to the island of Crete. Here can be found the prized Cretan Bull sent to King Minos by Poseidon. By King Eurystheus Decree: You must capture the rampaging bull.,false
+item:captured-bull,captured-bull,The bound and captured Cretan Bull,true
+foe:bull,bull,The Cretan Bull,false,You dodge the beast's horns with remarkable skill and speed. At close range the bull is no match for your strength and you easily wrestle it into submission,false,hands,You are forced to retreat in order to avoid being skewered by the beast's mighty horns.,captured-bull
+exit:e8,north-east,Journey to Thrace,8,true
+room:8,Steal the Mares of Diomedes,For your eighth labour you must return to the north-east of Greece. In Thrace Diomedes rules over the savage tribe of the Bistones who loved nothing more than to feed strangers and prisoners to the man-eating horses. By King Eurystheus' Decree: You must steal the mares from their owner.,false
+foe:diomedes,diomedes,Savage leader of the Bistones,false,In a fierce and lengthy battle you overpower the tyrant. With a final blow from your club you render him unconscious and feed him to his own monstrous horses.,false,club,You parry Diomedes latest strike and are forced to fall back.,tethered-mares
+item:tethered-mares,tethered-mares,The tethered man-eating Mares of Diomedes,true
+exit:e9,east,Long journey to the land of the Amazons,9,true
+room:9,Obtain the Belt of Hippolyta,Despising your continued success King Eurystheus sends you far away for the ninth task. On the southern coast of the black sea live the warrioresses of the Amazon tribe. By King Eurystheus' Decree: You must return with the Belt of the Queen of the Amazons.,false
+equipment:knife,knife,A knife that look perfect for opening a gift.,false,open,gift,opened,You open the gift and see a shining object.
+container:gift,gift,A gift from the Amazons in recognition of your great quest.,false
+item:belt,belt,The Belt of Hippolyta,true
+exit:e10,west,Long journey to the island of Erytheia,10,true
+room:10,Steal the cattle of Geryon,The tenth task requires you to travel to the faraway island of Erytheia to steal the cattle of the three-bodied giant Geryon. By King Eurystheus' Decree: You must return with the Cattle of Geryon.,false
+item:spear,spear,A sturdy wooden spear capped with dull steel,false
+foe:geryon,geryon,The three-bodied giant Geryon,false,DI,false,envenomed-arrows,FI,cattle-prod
+item:cattle-prod,cattle-prod,The cattle prod of Geryon,true
+exit:e11,west,Journey to the Garden of the Hesperides,11,true
+room:11,Apples of the Hesperides,For the eleventh task you must locate the mythical Garden of the Hesperides. It is said that the golden apples that grow there can grant immortality. By King Eurystheus' Decree: you must obtain 3 Golden Apples of the Hesperides.,false
+item:apples,apples,Golden Apples of the Hesperides,true
+foe:atlas,atlas,The powerful titan Atlas,false,DI,false,trickery,FI,apples
+exit:e12,south,Journey to the Underworld,12,true
+room:12,Capture Cerberus,Your twelfth and final labour lies in the most inhospitable of climes. The Domain of Hades is home to a savage three-headed guardian hound. By King Eurystheus' Decree: You must subdue and return with the beast without the use of weapons.,false
+equipment:lyre,lyre,The lyre of Apollo,false,play,cerberus,sends the guardian to sleep,You play a mellifluous lullaby causing the guardian hound to succumb to a deep somnolence.
+foe:cerberus,cerberus,The three-headed guardian of the Underworld,false,You play a mellifluous lullaby causing the guardian hound to succumb to a deep somnolence.,false,lyre,Your weapons pass straight through the hell-hound. It appears you will have to keep your promise to not use weapons.,sleeping-hound
+item:sleeping-hound,sleeping-hound,The slumbering form of Cerberus,true
+exit:e13,north,Glorious return to Tiryns,0,true
+room:0,Palace of King Eurystheus,Armour up and prepare yourself for the trials which lay ahead.,false
+container:chest,chest,A gift from the Archer God to see you off on your quest,false
+equipment:key,key,An elegant key gifted by Zeus himself.,false,open,chest,opened,You slip the key into the lock with a satisfying click
+equipment:bow,bow,Gifted by Apollo Farstriker and known widely as the finest bow in the lands.,true,shoot,birds,kill,Your arrows fly true and you fell the birds one by one with a bloodcurdling shriek.
+equipment:arrows,arrows,A quiver filled with finely crafted and iron-tipped arrows,true,dip,poison,envenomed-arrows,You dip the arrows in the Hydra's poison. You have a feeling this will be useful later.
+exit:e1,east,Path to the Nemean Hills,1,false
+player:Jono
