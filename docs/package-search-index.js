@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.uob.a2"},{"l":"org.uob.a2.commands"},{"l":"org.uob.a2.gameobjects"},{"l":"org.uob.a2.utils"}];updateSearchResults();
