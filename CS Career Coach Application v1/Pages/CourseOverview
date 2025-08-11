@@ -1,0 +1,305 @@
+import React, { useState, useEffect } from "react";
+import { base44 } from "@/api/base44Client";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Clock, Users, Target, CheckCircle2, ArrowRight, BookOpen, Code, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+
+export default function CourseOverview() {
+  const [modules, setModules] = useState([]);
+  const [progress, setProgress] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      const [modulesData, progressData] = await Promise.all([
+        base44.entities.Module.list("order_index"),
+        base44.entities.StudentProgress.list()
+      ]);
+      setModules(modulesData);
+      setProgress(progressData);
+    } catch (error) {
+      console.error("Error loading data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getModuleProgress = (moduleId) => {
+    const moduleProgress = progress.find(p => p.module_id === moduleId);
+    return moduleProgress?.completion_percentage || 0;
+  };
+
+  const getDifficultyColor = (difficulty) => {
+    const colors = {
+      'Beginner': 'bg-emerald-100 text-emerald-800 border-emerald-200',
+      'Intermediate': 'bg-amber-100 text-amber-800 border-amber-200',
+      'Advanced': 'bg-red-100 text-red-800 border-red-200'
+    };
+    return colors[difficulty] || colors['Beginner'];
+  };
+
+  const overallProgress = modules.length > 0 
+    ? modules.reduce((sum, module) => sum + getModuleProgress(module.id), 0) / modules.length 
+    : 0;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-emerald-600/10 rounded-3xl blur-3xl"></div>
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
+              <div className="flex justify-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl">
+                  <Code className="w-10 h-10 text-white" />
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-emerald-900 bg-clip-text text-transparent mb-4">
+                Computer Science Coach
+              </h1>
+              <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Master software development fundamentals through hands-on projects and industry best practices. 
+                Build real applications with paying users.
+              </p>
+              <div className="flex flex-wrap justify-center gap-6 text-sm">
+                <div className="flex items-center gap-2 text-slate-600">
+                  <Clock className="w-5 h-5 text-blue-600" />
+                  <span className="font-medium">16-20 Weeks</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-600">
+                  <Users className="w-5 h-5 text-emerald-600" />
+                  <span className="font-medium">Beginner to Intermediate</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-600">
+                  <Target className="w-5 h-5 text-amber-600" />
+                  <span className="font-medium">Project-Based Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Progress Overview */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-12"
+        >
+          <Card className="bg-white/80 backdrop-blur-xl border-white/40 shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-2xl">
+                <Target className="w-6 h-6 text-blue-600" />
+                Your Journey Progress
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-slate-600 font-medium">Overall Completion</span>
+                <span className="text-2xl font-bold text-slate-900">{Math.round(overallProgress)}%</span>
+              </div>
+              <Progress value={overallProgress} className="h-3 mb-6" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">{modules.length}</div>
+                  <div className="text-slate-600 font-medium">Total Modules</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-emerald-600 mb-2">
+                    {progress.filter(p => p.completion_percentage === 100).length}
+                  </div>
+                  <div className="text-slate-600 font-medium">Completed</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-amber-600 mb-2">
+                    {progress.filter(p => p.completion_percentage > 0 && p.completion_percentage < 100).length}
+                  </div>
+                  <div className="text-slate-600 font-medium">In Progress</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Course Modules */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-slate-900">Course Modules</h2>
+            <Link to={createPageUrl("Progress")}>
+              <Button className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 text-white shadow-lg">
+                <Target className="w-4 h-4 mr-2" />
+                Track Progress
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid gap-6">
+            {modules.map((module, index) => {
+              const moduleProgress = getModuleProgress(module.id);
+              const isCompleted = moduleProgress === 100;
+              const isInProgress = moduleProgress > 0 && moduleProgress < 100;
+              
+              return (
+                <motion.div
+                  key={module.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className={`group hover:shadow-2xl transition-all duration-500 border-2 ${
+                    isCompleted 
+                      ? 'bg-gradient-to-r from-emerald-50 to-emerald-100 border-emerald-200' 
+                      : isInProgress 
+                      ? 'bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200'
+                      : 'bg-white/80 border-white/40 hover:border-blue-200'
+                  } backdrop-blur-xl`}>
+                    <CardHeader className="pb-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-start gap-4">
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg ${
+                            isCompleted 
+                              ? 'bg-gradient-to-br from-emerald-500 to-emerald-600' 
+                              : isInProgress
+                              ? 'bg-gradient-to-br from-blue-500 to-blue-600'
+                              : 'bg-gradient-to-br from-slate-400 to-slate-500'
+                          }`}>
+                            {isCompleted ? <CheckCircle2 className="w-6 h-6" /> : index + 1}
+                          </div>
+                          <div className="flex-1">
+                            <CardTitle className="text-xl text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                              {module.title}
+                            </CardTitle>
+                            <p className="text-slate-600 leading-relaxed mb-3">
+                              {module.description}
+                            </p>
+                            <div className="flex flex-wrap items-center gap-3">
+                              <Badge className={`${getDifficultyColor(module.difficulty_level)} border font-medium`}>
+                                {module.difficulty_level}
+                              </Badge>
+                              <div className="flex items-center gap-1 text-sm text-slate-600">
+                                <Clock className="w-4 h-4" />
+                                <span>{module.duration_weeks} weeks</span>
+                              </div>
+                              <div className="flex items-center gap-1 text-sm text-slate-600">
+                                <BookOpen className="w-4 h-4" />
+                                <span>{module.topics?.length || 0} topics</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="icon"
+                          className="opacity-0 group-hover:opacity-100 transition-opacity hover:bg-blue-100"
+                        >
+                          <ArrowRight className="w-5 h-5" />
+                        </Button>
+                      </div>
+                    </CardHeader>
+
+                    <CardContent className="pt-0">
+                      {moduleProgress > 0 && (
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm font-medium text-slate-600">Progress</span>
+                            <span className="text-sm font-bold text-slate-900">{Math.round(moduleProgress)}%</span>
+                          </div>
+                          <Progress value={moduleProgress} className="h-2" />
+                        </div>
+                      )}
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {module.learning_objectives && module.learning_objectives.length > 0 && (
+                          <div>
+                            <h4 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                              <Target className="w-4 h-4 text-blue-600" />
+                              Learning Objectives
+                            </h4>
+                            <ul className="space-y-2">
+                              {module.learning_objectives.slice(0, 3).map((objective, idx) => (
+                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
+                                  <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                                  <span>{objective}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {module.deliverables && module.deliverables.length > 0 && (
+                          <div>
+                            <h4 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                              <Zap className="w-4 h-4 text-amber-600" />
+                              Key Deliverables
+                            </h4>
+                            <ul className="space-y-2">
+                              {module.deliverables.slice(0, 3).map((deliverable, idx) => (
+                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
+                                  <ArrowRight className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                                  <span>{deliverable}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-16 text-center"
+        >
+          <Card className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white border-0 shadow-2xl">
+            <CardContent className="p-8 md:p-12">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Journey?</h3>
+              <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
+                Transform your ideas into profitable applications. Join thousands of successful developers who started here.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to={createPageUrl("Progress")}>
+                  <Button size="lg" className="bg-white text-blue-600 hover:bg-slate-50 shadow-lg">
+                    <Target className="w-5 h-5 mr-2" />
+                    Start Learning Now
+                  </Button>
+                </Link>
+                <Link to={createPageUrl("Resources")}>
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 shadow-lg">
+                    <BookOpen className="w-5 h-5 mr-2" />
+                    Explore Resources
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
