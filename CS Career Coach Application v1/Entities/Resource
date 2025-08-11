@@ -1,0 +1,57 @@
+{
+  "name": "Resource",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Resource title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Resource description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Tool",
+        "Documentation",
+        "Tutorial",
+        "Book",
+        "Video",
+        "Practice"
+      ],
+      "description": "Resource category"
+    },
+    "url": {
+      "type": "string",
+      "description": "Resource URL"
+    },
+    "difficulty_level": {
+      "type": "string",
+      "enum": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "description": "Difficulty level"
+    },
+    "related_modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related module IDs"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Resource rating"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "url"
+  ]
+}

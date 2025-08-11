@@ -1,0 +1,38 @@
+{
+  "name": "StudentProgress",
+  "type": "object",
+  "properties": {
+    "module_id": {
+      "type": "string",
+      "description": "Reference to module"
+    },
+    "completion_percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Progress percentage"
+    },
+    "completed_topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Completed topics"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Student notes"
+    },
+    "current_focus": {
+      "type": "string",
+      "description": "Current learning focus"
+    },
+    "time_spent_hours": {
+      "type": "number",
+      "description": "Hours spent on this module"
+    }
+  },
+  "required": [
+    "module_id"
+  ]
+}

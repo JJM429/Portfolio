@@ -1,0 +1,64 @@
+{
+  "name": "Module",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Module title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Module description"
+    },
+    "order_index": {
+      "type": "number",
+      "description": "Order in the course"
+    },
+    "duration_weeks": {
+      "type": "number",
+      "description": "Estimated duration in weeks"
+    },
+    "difficulty_level": {
+      "type": "string",
+      "enum": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "description": "Difficulty level"
+    },
+    "learning_objectives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key learning objectives"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Topics covered in this module"
+    },
+    "practical_exercises": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Hands-on exercises"
+    },
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Expected deliverables"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "order_index"
+  ]
+}
